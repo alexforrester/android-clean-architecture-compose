@@ -1,30 +1,26 @@
 buildscript {
-    ext.kotlin_version = '1.8.10'
-    ext.androidx_navigation_ktx_version = '2.3.0-alpha02'
-    ext.moshi_version = '1.14.0'
-    ext.androidx_espresso_version = "3.3.0-alpha04"
-    ext.koin_version = '2.0.1'
+    ext.kotlin_version = '1.9.20'
 
     repositories {
         google()
-        jcenter()
+        mavenCentral()
 
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.21"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.7.6"
     }
 }
 
 plugins {
-    id 'com.google.devtools.ksp' version '1.8.0-1.0.8' apply false
+    id 'com.google.devtools.ksp' version '1.9.21-1.0.15' apply false
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 

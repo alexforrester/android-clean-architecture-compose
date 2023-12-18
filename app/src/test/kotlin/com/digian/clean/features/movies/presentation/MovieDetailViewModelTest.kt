@@ -1,9 +1,9 @@
 package com.digian.clean.features.movies.presentation
 
 import androidx.lifecycle.Observer
+import androidx.lifecycle.testing.TestLifecycleOwner
 import com.digian.clean.InstantExecutorExtension
 import com.digian.clean.MovieRepositoryFactory
-import com.digian.clean.MoviesLifeCycleOwner
 import com.digian.clean.core.domain.exception.Failure
 import com.digian.clean.features.movies.domain.entities.GenreEntity
 import com.digian.clean.features.movies.domain.entities.MovieEntity
@@ -43,7 +43,7 @@ internal class MovieDetailViewModelTest {
         val observer = mockk<Observer<MovieEntity>>()
         every{ observer.onChanged(any()) } just Runs
 
-        moviesDetailViewModel.movie.observe(MoviesLifeCycleOwner(), observer)
+        moviesDetailViewModel.movie.observe(TestLifecycleOwner(), observer)
         moviesDetailViewModel.loadMovie(278)
 
         verify { observer.onChanged(any()) }
@@ -74,8 +74,8 @@ internal class MovieDetailViewModelTest {
         every { failureObserver.onChanged(any()) } just Runs
 
         //Verifying observer called when no movie found
-        moviesDetailViewModel.movie.observe(MoviesLifeCycleOwner(), observer)
-        moviesDetailViewModel.failure.observe(MoviesLifeCycleOwner(), failureObserver)
+        moviesDetailViewModel.movie.observe(TestLifecycleOwner(), observer)
+        moviesDetailViewModel.failure.observe(TestLifecycleOwner(), failureObserver)
         moviesDetailViewModel.loadMovie(UNKNOWN_MOVIE_ID)
 
         //failureObserver
