@@ -1,7 +1,7 @@
 package com.digian.clean.features.movies.domain.entities
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by Alex Forrester on 11/04/2019.

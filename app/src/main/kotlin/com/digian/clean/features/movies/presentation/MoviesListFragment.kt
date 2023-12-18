@@ -10,14 +10,13 @@ import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.digian.clean.R
 import com.digian.clean.core.data.exception.Failures
+import com.digian.clean.databinding.FragmentMoviesBinding
 import com.digian.clean.features.movies.domain.entities.MovieEntity
-import kotlinx.android.synthetic.main.fragment_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -31,11 +30,17 @@ class MoviesListFragment : Fragment() {
 
     private val moviesListViewModel: MoviesListViewModel by viewModel()
 
+
+    private var _binding: FragmentMoviesBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_movies, container, false)
+    ): View {
+        _binding = FragmentMoviesBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {
@@ -52,7 +57,7 @@ class MoviesListFragment : Fragment() {
 
         })
 
-        moviesRecyclerView = movies_recycler_view.apply {
+        moviesRecyclerView = binding.moviesRecyclerView.apply {
             setHasFixedSize(true)
 
             layoutManager = moviesViewManager
@@ -66,13 +71,13 @@ class MoviesListFragment : Fragment() {
             )
         }
 
-        moviesListViewModel.movies.observe(MoviesListFragment@ this,
+        moviesListViewModel.movies.observe(viewLifecycleOwner,
             Observer<List<MovieEntity>> { popularMovies ->
                 moviesListAdapter.data = popularMovies
                 moviesListAdapter.notifyDataSetChanged()
             })
 
-        moviesListViewModel.failure.observe(MoviesListFragment@ this,
+        moviesListViewModel.failure.observe(viewLifecycleOwner,
             Observer { failure ->
                 Toast.makeText(
                     activity,
