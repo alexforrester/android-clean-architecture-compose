@@ -12,13 +12,13 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.0"
     }
 }
 
 plugins {
-    id 'com.google.devtools.ksp' version '1.8.10-1.0.9' apply false
+    id 'com.google.devtools.ksp' version '1.8.0-1.0.8' apply false
 }
 
 allprojects {
