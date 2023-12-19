@@ -1,5 +1,6 @@
 package com.digian.clean.features.movies.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,10 +17,12 @@ import kotlinx.coroutines.withContext
 /**
  * Created by Alex Forrester on 23/04/2019.
  */
-class MovieDetailViewModel(val movieDetailUseCase: MovieDetailUseCase) : ViewModel() {
+class MovieDetailViewModelCompose(val movieDetailUseCase: MovieDetailUseCase) : ViewModel() {
 
     val failure: MutableLiveData<Failure> = MutableLiveData()
-    val movie: MutableLiveData<MovieEntity> = MutableLiveData()
+
+    private val _movie: MutableLiveData<MovieEntity> = MutableLiveData()
+    val movie: LiveData<MovieEntity> = _movie
 
     fun loadMovie(movieId : Int) {
         viewModelScope.launch {
@@ -39,6 +42,6 @@ class MovieDetailViewModel(val movieDetailUseCase: MovieDetailUseCase) : ViewMod
     }
 
     private fun handleSuccess(movie: MovieEntity) {
-        this.movie.value = movie
+        _movie.value = movie
     }
 }

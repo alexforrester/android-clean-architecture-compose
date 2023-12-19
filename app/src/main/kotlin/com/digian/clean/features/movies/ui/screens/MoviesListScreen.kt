@@ -18,23 +18,24 @@ import com.digian.clean.features.movies.ui.components.Movie
 fun MoviesListScreen(
     modifier: Modifier = Modifier,
     viewModel: MoviesListViewModelCompose,
+    onMovieClick: (MovieEntity) -> Unit,
 ) {
     val movies: State<List<MovieEntity>> = viewModel.movies.observeAsState(listOf())
-    LoadMoviesList(viewModel, movies.value)
+    LoadMoviesList(viewModel, movies.value, onMovieClick)
     viewModel.loadMovies()
 }
 
 @Composable
 fun LoadMoviesList(
     viewModel: MoviesListViewModelCompose,
-    movies: List<MovieEntity>
+    movies: List<MovieEntity>,
+    onMovieClick: (MovieEntity) -> Unit
 ) {
 
     if (movies.isNotEmpty()) {
         MoviesList(
             movies = movies,
-            onMovieClick = {
-            }
+            onMovieClick = onMovieClick
         )
     }
 }
@@ -43,7 +44,7 @@ fun LoadMoviesList(
 @Composable
 private fun MoviesList(
     movies: List<MovieEntity>,
-    onMovieClick: (MovieEntity) -> Unit = {},
+    onMovieClick: (MovieEntity) -> Unit,
 ) {
     LazyColumn {
         items(count = movies.size) { moviesIndex ->
@@ -64,6 +65,6 @@ private fun MoviesListPreview() {
             MovieEntity(1, 234232, "Lord of the Rings", "", emptyList(), ""),
             MovieEntity(2, 43435, "Forrest Gump", "", emptyList(), ""),
             MovieEntity(1, 345253, "The Godfather", "", emptyList(), "")
-        )
+        ), {}
     )
 }

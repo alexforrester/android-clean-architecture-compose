@@ -8,6 +8,7 @@ import com.digian.clean.features.movies.domain.repository.MoviesRepository
 import com.digian.clean.features.movies.domain.usecases.MovieDetailUseCase
 import com.digian.clean.features.movies.domain.usecases.MoviesUseCase
 import com.digian.clean.features.movies.presentation.MovieDetailViewModel
+import com.digian.clean.features.movies.presentation.MovieDetailViewModelCompose
 import com.digian.clean.features.movies.presentation.MoviesListViewModel
 import com.digian.clean.features.movies.presentation.MoviesListViewModelCompose
 import com.squareup.moshi.Moshi
@@ -45,6 +46,7 @@ val appModules = module {
     viewModel { MoviesListViewModel(get()) }
     viewModel { MovieDetailViewModel(get()) }
     viewModel { MoviesListViewModelCompose(get()) }
+    viewModel { MovieDetailViewModelCompose(get()) }
 }
 
 /* function to build our Retrofit service */
