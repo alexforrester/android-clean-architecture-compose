@@ -30,7 +30,6 @@ class MoviesListFragment : Fragment() {
 
     private val moviesListViewModel: MoviesListViewModel by viewModel()
 
-
     private var _binding: FragmentMoviesBinding? = null
     private val binding get() = _binding!!
 
