@@ -9,6 +9,7 @@ import com.digian.clean.features.movies.domain.usecases.MovieDetailUseCase
 import com.digian.clean.features.movies.domain.usecases.MoviesUseCase
 import com.digian.clean.features.movies.presentation.MovieDetailViewModel
 import com.digian.clean.features.movies.presentation.MoviesListViewModel
+import com.digian.clean.features.movies.presentation.MoviesListViewModelCompose
 import com.squareup.moshi.Moshi
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -43,6 +44,7 @@ val appModules = module {
 
     viewModel { MoviesListViewModel(get()) }
     viewModel { MovieDetailViewModel(get()) }
+    viewModel { MoviesListViewModelCompose(get()) }
 
 
 }

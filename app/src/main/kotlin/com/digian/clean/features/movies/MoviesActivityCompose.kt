@@ -1,8 +1,6 @@
 package com.digian.clean.features.movies
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,33 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.digian.clean.R
-import com.digian.clean.core.data.exception.Failures
-import com.digian.clean.features.movies.presentation.MoviesListViewModel
+import com.digian.clean.features.movies.presentation.MoviesListViewModelCompose
 import com.digian.clean.features.movies.theme.AndroidCleanArchitectureComposeTheme
+import com.digian.clean.features.movies.ui.screens.MoviesListScreen
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MoviesActivityCompose : ComponentActivity() {
 
-
-//    moviesListViewModel.movies.observe(viewLifecycleOwner,
-//    Observer<List<MovieEntity>> { popularMovies ->
-//        moviesListAdapter.data = popularMovies
-//        moviesListAdapter.notifyDataSetChanged()
-//    })
-//
-//    moviesListViewModel.failure.observe(viewLifecycleOwner,
-//    Observer { failure ->
-//        Toast.makeText(
-//            activity,
-//            getString(R.string.movie_list_loading_error).plus((failure as? Failures)?.exception?.message),
-//            Toast.LENGTH_LONG
-//        ).show()
-//    })
-//
-//    moviesListViewModel.loadMovies()
-
-
-    private val moviesListViewModel: MoviesListViewModel by viewModel()
+    private val viewModel: MoviesListViewModelCompose by viewModel()
 
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,8 +35,7 @@ class MoviesActivityCompose : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-
-                    Scaffold (
+                    Scaffold(
                         topBar = {
                             TopAppBar(
                                 colors = topAppBarColors(
@@ -65,14 +43,13 @@ class MoviesActivityCompose : ComponentActivity() {
                                     titleContentColor = MaterialTheme.colorScheme.primary,
                                 ),
                                 title = {
-                                    Text( text = getString(R.string.popular_movies))
+                                    Text(text = getString(R.string.popular_movies))
                                 }
                             )
                         },
                         content = { innerPadding ->
-                        Greeting("Android", modifier = Modifier
-                            .padding(innerPadding))
-                    })
+                            MoviesListScreen(modifier = Modifier.padding(innerPadding), viewModel)
+                        })
                 }
             }
         }
