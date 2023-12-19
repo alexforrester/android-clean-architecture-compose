@@ -12,6 +12,7 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.digian.clean.R
+import com.digian.clean.features.movies.MoviesActivity
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
