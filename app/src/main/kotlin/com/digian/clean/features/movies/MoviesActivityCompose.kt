@@ -12,9 +12,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.digian.clean.R
 import com.digian.clean.features.movies.presentation.MoviesListViewModelCompose
 import com.digian.clean.features.movies.theme.AndroidCleanArchitectureComposeTheme
@@ -48,26 +47,13 @@ class MoviesActivityCompose : ComponentActivity() {
                             )
                         },
                         content = { innerPadding ->
-                            MoviesListScreen(modifier = Modifier.padding(innerPadding), viewModel)
+                            MoviesListScreen(
+                                modifier = Modifier.padding(0.dp,innerPadding.calculateTopPadding(),0.dp, innerPadding.calculateBottomPadding() ),
+                                viewModel
+                            )
                         })
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    AndroidCleanArchitectureComposeTheme {
-        Greeting("Android")
     }
 }

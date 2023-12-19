@@ -45,8 +45,6 @@ val appModules = module {
     viewModel { MoviesListViewModel(get()) }
     viewModel { MovieDetailViewModel(get()) }
     viewModel { MoviesListViewModelCompose(get()) }
-
-
 }
 
 /* function to build our Retrofit service */

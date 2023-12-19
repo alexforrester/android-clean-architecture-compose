@@ -15,9 +15,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
-/**
- * Created by Alex Forrester on 23/04/20
- */
 class MoviesListViewModelCompose(val moviesUseCase: MoviesUseCase) : ViewModel() {
 
     val failure: MutableLiveData<Failure> = MutableLiveData()

@@ -16,18 +16,17 @@ import com.digian.clean.features.movies.domain.entities.MovieEntity
 @ExperimentalMaterialApi
 @Composable
 fun Movie(
-    modifier: Modifier,
     movieEntity: MovieEntity,
     onMovieClick: (MovieEntity) -> Unit = {},
 ) {
     Card(
         shape = RoundedCornerShape(4.dp),
-        modifier = modifier
+        modifier = Modifier
             .padding(4.dp)
             .fillMaxWidth(),
     ) {
         ListItem(
-            text = { Text(text = movieEntity.title, maxLines = 1) },
+            text = { Text(text = movieEntity.title) },
             modifier = Modifier.clickable {
                 onMovieClick.invoke(movieEntity)
             }
@@ -39,5 +38,5 @@ fun Movie(
 @Preview
 @Composable
 private fun MoviePreview() {
-    Movie(modifier = Modifier, movieEntity = MovieEntity(1, 3456, "Lord of the Rings", "", emptyList(),"" ))
+    Movie(movieEntity = MovieEntity(1, 3456, "Lord of the Rings", "", emptyList(),"" ))
 }
