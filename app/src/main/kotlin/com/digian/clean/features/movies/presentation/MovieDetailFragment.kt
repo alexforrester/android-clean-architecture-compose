@@ -60,7 +60,7 @@ class MovieDetailFragment : Fragment() {
         movieDetailViewModel.movie.observe(viewLifecycleOwner,
             Observer<MovieEntity> { movie ->
 
-                movie?.let { movieDetail ->
+                movie.let { movieDetail ->
                     movieDetail.genres.let { genres ->
 
                         if (genres.isNotEmpty()) {
