@@ -59,14 +59,8 @@ class MoviesActivityCompose : ComponentActivity() {
                             )
                         },
                         content = { innerPadding ->
-
                             AppScreens(
-                                modifier = Modifier.padding(
-                                    0.dp,
-                                    innerPadding.calculateTopPadding(),
-                                    0.dp,
-                                    innerPadding.calculateBottomPadding()
-                                ),
+                                modifier = Modifier.padding(innerPadding),
                                 navController = navController,
                                 moviesListViewModelCompose,
                                 movieDetailViewModelCompose
@@ -92,6 +86,7 @@ private fun AppScreens(
     ) {
         composable(Screen.MoviesList.route) {
             MoviesListScreen(
+                modifier = modifier,
                 viewModel = moviesListViewModelCompose,
                 onMovieClick = { movieEntity ->
                     moviesDetailViewModelCompose.loadMovie(movieEntity.id)
@@ -101,8 +96,8 @@ private fun AppScreens(
         }
         composable(Screen.MoviesDetail.route) {
             MovieDetailScreen(
+                modifier = modifier,
                 viewModel = moviesDetailViewModelCompose,
-                onNavigateBack = { navController.popBackStack() }
             )
         }
     }

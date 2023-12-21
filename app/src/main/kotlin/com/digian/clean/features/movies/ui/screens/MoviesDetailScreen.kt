@@ -1,16 +1,16 @@
 package com.digian.clean.features.movies.ui.screens
 
 import android.annotation.SuppressLint
-import android.net.Uri
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
-import coil.compose.AsyncImagePainter
-import coil.compose.rememberImagePainter
 import com.digian.clean.features.movies.domain.entities.GenreEntity
 import com.digian.clean.features.movies.domain.entities.MovieEntity
 import com.digian.clean.features.movies.presentation.IMAGE_URL_AND_PATH
@@ -21,18 +21,15 @@ import com.digian.clean.features.movies.presentation.MovieDetailViewModelCompose
 @Composable
 fun MovieDetailScreen(
     modifier: Modifier = Modifier,
-    viewModel: MovieDetailViewModelCompose,
-    onNavigateBack: () -> Unit = {}
+    viewModel: MovieDetailViewModelCompose
 ) {
 
     val movieEntity: State<MovieEntity?> = viewModel.movie.observeAsState()
-    
-    DisplayMovie(movieEntity = movieEntity.value)
-    
 
-
-
-
+    Box(modifier = modifier.fillMaxSize(1.0f).fillMaxWidth(1.0f)
+    ) {
+        DisplayMovie(movieEntity = movieEntity.value)
+    }
 }
 @Composable
 fun DisplayMovie(movieEntity: MovieEntity?) {
@@ -42,6 +39,7 @@ fun DisplayMovie(movieEntity: MovieEntity?) {
         val posterImage = IMAGE_URL_AND_PATH.plus(movieEntity.imagePath)
 
         AsyncImage(
+            alignment = Alignment.TopEnd,
             model = posterImage,
             contentDescription = null,
         )
