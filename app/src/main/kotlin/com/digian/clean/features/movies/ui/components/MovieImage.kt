@@ -7,7 +7,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import com.digian.clean.features.movies.domain.entities.MovieEntity
 
-
 @Composable
 fun MovieImage(modifier: Modifier, movieEntity: MovieEntity?, imageUrl: String) {
 
@@ -20,7 +19,6 @@ fun MovieImage(modifier: Modifier, movieEntity: MovieEntity?, imageUrl: String) 
         )
     }
 }
-
 
 @Preview
 @Composable
