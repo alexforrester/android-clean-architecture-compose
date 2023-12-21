@@ -6,7 +6,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -14,7 +13,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import coil.compose.AsyncImage
 import com.digian.clean.features.movies.domain.entities.GenreEntity
 import com.digian.clean.features.movies.domain.entities.MovieEntity
 import com.digian.clean.features.movies.presentation.IMAGE_URL_AND_PATH
@@ -46,7 +44,7 @@ fun MovieDetailScreen(
 
             )
         Text(
-            movieEntity.value?.shortOverview ?: "",
+            movieEntity.value?.overview ?: "",
             Modifier
                 .constrainAs(body) {
                     top.linkTo(title.bottom, margin = 8.dp)
@@ -55,7 +53,7 @@ fun MovieDetailScreen(
                     width = Dimension.preferredWrapContent
                 }
                 .padding(8.dp, 0.dp),
-            style = TextStyle(fontSize = 22.sp),
+            style = TextStyle(fontSize = 20.sp),
         )
         Text(
             text = createGenreText(movieEntity.value?.genres ?: emptyList()),
@@ -82,9 +80,9 @@ fun MovieDetailScreen(
             modifier = Modifier
                 .constrainAs(image) {
                     top.linkTo(title.bottom)
-                    linkTo(body.end, parent.end, bias = 1f)
+                    linkTo(body.end, parent.end)
                 }
-                .padding(8.dp, 0.dp), movieEntity = movieEntity.value,
+                .padding(10.dp, 0.dp), movieEntity = movieEntity.value,
          IMAGE_URL_AND_PATH.plus(movieEntity.value?.imagePath ?: ""))
     }
 }
