@@ -19,6 +19,7 @@ import com.digian.clean.features.movies.domain.entities.GenreEntity
 import com.digian.clean.features.movies.domain.entities.MovieEntity
 import com.digian.clean.features.movies.presentation.IMAGE_URL_AND_PATH
 import com.digian.clean.features.movies.presentation.MovieDetailViewModelCompose
+import com.digian.clean.features.movies.ui.components.MovieImage
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -77,31 +78,15 @@ fun MovieDetailScreen(
             text = movieEntity.value?.voteCount.toString(),
         )
 
-        DisplayMovie(
+        MovieImage(
             modifier = Modifier
                 .constrainAs(image) {
                     top.linkTo(title.bottom)
                     linkTo(body.end, parent.end, bias = 1f)
                 }
-                .padding(8.dp, 0.dp), movieEntity = movieEntity.value
-        )
+                .padding(8.dp, 0.dp), movieEntity = movieEntity.value,
+         IMAGE_URL_AND_PATH.plus(movieEntity.value?.imagePath ?: ""))
     }
-}
-
-@Composable
-fun DisplayMovie(modifier: Modifier, movieEntity: MovieEntity?) {
-
-    movieEntity?.run {
-        val posterImage = IMAGE_URL_AND_PATH.plus(movieEntity.imagePath)
-
-        AsyncImage(
-            modifier = modifier,
-            alignment = Alignment.TopEnd,
-            model = posterImage,
-            contentDescription = null,
-        )
-    }
-
 }
 
 fun createGenreText(genreData: List<GenreEntity>): String {
