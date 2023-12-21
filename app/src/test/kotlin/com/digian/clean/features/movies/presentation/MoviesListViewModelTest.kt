@@ -1,9 +1,9 @@
 package com.digian.clean.features.movies.presentation
 
 import androidx.lifecycle.Observer
+import androidx.lifecycle.testing.TestLifecycleOwner
 import com.digian.clean.InstantExecutorExtension
 import com.digian.clean.MovieRepositoryFactory
-import com.digian.clean.MoviesLifeCycleOwner
 import com.digian.clean.core.data.exception.Failures
 import com.digian.clean.core.domain.exception.Failure
 import com.digian.clean.core.domain.ports.UseCaseInputPort
@@ -51,7 +51,7 @@ internal class MoviesListViewModelTest {
         val observer = mockk<Observer<List<MovieEntity>>>()
         every { observer.onChanged(any()) } just Runs
 
-        moviesListViewModel.movies.observe(MoviesLifeCycleOwner(), observer)
+        moviesListViewModel.movies.observe(TestLifecycleOwner(), observer)
         moviesListViewModel.loadMovies()
 
         verify { observer.onChanged(any()) }
@@ -94,10 +94,10 @@ internal class MoviesListViewModelTest {
         )
 
         moviesListViewModelWithFailureRepoGetMovies.failure.observe(
-            MoviesLifeCycleOwner(),
+            TestLifecycleOwner(),
             failureObserver
         )
-        moviesListViewModelWithFailureRepoGetMovies.movies.observe(MoviesLifeCycleOwner(), observer)
+        moviesListViewModelWithFailureRepoGetMovies.movies.observe(TestLifecycleOwner(), observer)
         moviesListViewModelWithFailureRepoGetMovies.loadMovies()
 
         verify { failureObserver.onChanged(any()) }
@@ -128,10 +128,10 @@ internal class MoviesListViewModelTest {
         )
 
         moviesListViewModelWithFailureRepoGetMovies.failure.observe(
-            MoviesLifeCycleOwner(),
+            TestLifecycleOwner(),
             failureObserver
         )
-        moviesListViewModelWithFailureRepoGetMovies.movies.observe(MoviesLifeCycleOwner(), observer)
+        moviesListViewModelWithFailureRepoGetMovies.movies.observe(TestLifecycleOwner(), observer)
         moviesListViewModelWithFailureRepoGetMovies.loadMovies()
 
         verify { failureObserver.onChanged(any()) }

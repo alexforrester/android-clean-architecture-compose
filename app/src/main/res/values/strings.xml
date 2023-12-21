@@ -4,4 +4,6 @@
     <string name="movie_image">Movie Detail Image</string>
     <string name="movie_detail_loading_error">Error Loading Movie Detail</string>
     <string name="movie_list_loading_error">Error Loading Movie List</string>
+    <string name="title_activity_main_compose">MainActivityCompose</string>
+    <string name="title_activity_movies_compose">MoviesActivityCompose</string>
 </resources>

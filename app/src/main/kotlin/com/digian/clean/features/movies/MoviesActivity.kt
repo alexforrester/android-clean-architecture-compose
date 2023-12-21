@@ -1,4 +1,4 @@
-package com.digian.clean.features.movies.presentation
+package com.digian.clean.features.movies
 
 import android.os.Bundle
 import androidx.annotation.VisibleForTesting
@@ -18,8 +18,8 @@ class MoviesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movies)
 
+        setContentView(R.layout.activity_movies)
         title = getString(R.string.popular_movies)
     }
 
